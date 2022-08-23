@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  api:
+    image: node:18-alpine
+    tty: true
+    volumes:
+      - .:/src/app
+    ports:
+      - 8000:8000
+    env_file:
+      - .env
+  mongo:
+    image: mongo
+    restart: always
+    env_file:
+      - .env.mongo
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: 844208ff7865d93f4239be58c96975e93600b6679990f7a6ac
+      ME_CONFIG_MONGODB_URL: mongodb://root:844208ff7865d93f4239be58c96975e93600b6679990f7a6ac@mongo:27017/
