@@ -1,5 +1,7 @@
 import express, { Router } from "express";
+import { body } from "express-validator";
 import location from '../models/locations.js'
+import validate from '../models/validate.js'
 /**
  * 
  * @type {Router}
@@ -45,11 +47,11 @@ router.get('/list', async (req, res, next) => {
 /**
  * @swagger
  * /locations/insert:
- *   get:
+ *   post:
  *     tags:
  *       - auth
- *     summary: 列出全部的地點
- *     description: 列出全部的地點
+ *     summary: 新增一個地點
+ *     description: 新增一個地點
  *     responses:
  *       200:
  *         schema:
@@ -61,9 +63,15 @@ router.get('/list', async (req, res, next) => {
 
 
 
- router.get('/insert', async (req, res, next) => {
+ router.post('/insert', validate([
+	body('N').isNumeric(),
+	body('E').isNumeric(),
+	body('road2').if(body('road2').exists()).isString(),
+	body('road2').if(body('road2').exists()).isString(),
+	body('comment').if(body('comment').exists()).isString(),
+ ]), async (req, res, next) => {
 	try {
-		const result = await location.insert()
+		const result = await location.insert(req.body)
 		res.status(200).json(result)
 	} catch (e) {
 		next(e)
