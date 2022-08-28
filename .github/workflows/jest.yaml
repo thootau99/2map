@@ -10,24 +10,8 @@ jobs:
     steps:
     - name: Git checkout
       uses: actions/checkout@v3
-
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-
-    - name: Start MongoDB
-      uses: supercharge/mongodb-github-action@1.8.0
-      with:
-        mongodb-version: ${{ matrix.mongodb-version }}
-        mongodb-username: ${{ secrets.MONGO_INITDB_ROOT_USERNAME }}
-        mongodb-password:  ${{ secrets.MONGO_INITDB_ROOT_PASSWORD }}
-        mongodb-db:  ${{ secrets.MONGO_DATABASE_TEST }}
-
-    - name: Install dependencies
-      run: npm install
-
-    - name: Run tests
-      run: npm test
-      env:
-        test: true
+    - name: init project
+      run: sudo apt-get install -y make
+      run: make init
+    - name: Docker compose up
+      uses: docker-compose up -d
