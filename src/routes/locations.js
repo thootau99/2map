@@ -60,9 +60,6 @@ router.get('/list', async (req, res, next) => {
  *         schema:
  *           type: string
  */
-
-
-
  router.post('/insert', validate([
 	body('N').isNumeric(),
 	body('E').isNumeric(),

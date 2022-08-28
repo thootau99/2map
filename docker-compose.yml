@@ -2,8 +2,7 @@ version: '3'
 
 services:
   api:
-    image: node:18-alpine
-    tty: true
+    build: .
     volumes:
       - .:/src/app
     ports:
