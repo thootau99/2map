@@ -14,4 +14,4 @@ jobs:
       run: sudo apt-get install -y make
       run: make init
     - name: Docker compose up
-      uses: docker-compose up -d
+      run: docker-compose up -d
