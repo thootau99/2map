@@ -16,5 +16,4 @@ jobs:
     - run: make init
 
     - name: Docker compose up & jest
-      run: docker-compose up -d
-    - run: docker-compose exec api sh -c "npm run test"
+      run: docker-compose up -d && docker-compose exec api sh -c "npm run test"
