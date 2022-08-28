@@ -15,5 +15,10 @@ jobs:
       run: sudo apt-get install -y make
     - run: make init
 
-    - name: Docker compose up & jest
-      run: docker-compose up -d && docker-compose exec api sh -c "npm run test"
+    - name: Create mongoDB Docker container for API testing
+      uses: DigiPie/mongo-action@v1.0.1
+
+    - name: Run `npm test`
+      run: npm test
+      env:
+        CI: true
