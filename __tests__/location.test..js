@@ -19,7 +19,6 @@ describe("test user features", () => {
 
     test('GET /locations/list', async () => {
         const result = await supertest(app).get('/locations/list')
-        console.log(result)
         expect(result.status).toBe(200)
     });
 })
