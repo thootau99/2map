@@ -1,12 +1,14 @@
-import express, {Router} from 'express'
-import locations from '../routes/locations.js'
+const express = require('express')
+const { router: locations } = require('../routes/locations.js')
 
 const app = express()
-const router = Router()
+const router = express.Router()
 
-router.use('/location', locations)
+router.use('/locations', locations)
 
 app.use(express.json())
 app.use('/', router)
 
-export default app
+module.exports = {
+    app
+}

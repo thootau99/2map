@@ -1,4 +1,5 @@
-import app from './server/express.js'
+const {app} = require('./server/express.js')
+
 const port = process.env.PORT_SERVER || "8000";
 
 

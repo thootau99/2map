@@ -1,27 +1,25 @@
-const app = require('../src/server/express.js')
-const request = require('supertest')
-
+const {app} = require('../src/server/express.js')
+const supertest = require('supertest')
 describe("test user features", () => {
-    beforeAll((done) => {
-        db.createTestDatabase().then(() => {
-            db.seedTestDatabase().then(async () => {
-                process.env.NODE_ENV = "test"
-                // do login
-                API_KEY = await login()
-                done()
-            })
-        })
-    })
-    afterAll((done) => {
-        db.destroyTestDatabase().then(() => done())
-    })
-    it('check health', async () => {
-        const response = await _request(_app).get('/health')
-        expect(response.status).toBe(200)
-    })
-    it('GET /autoreply 拿全部自動回覆', async () => {
-        const response = await _request(_app).get('/autoreply')
-        .set('authorization', API_KEY)
-        expect(response.status).toBe(200)
-    })
+    const OLD_ENV = process.env;
+
+    beforeEach(() => {
+      jest.resetModules()
+      process.env = { ...OLD_ENV, test: true };
+    });
+  
+    afterAll(() => {
+      process.env = OLD_ENV;
+    });
+
+    test('POST /locations/insert', () => {
+        // N, E, road1, road2, comment
+
+      });
+
+    test('GET /locations/list', async () => {
+        const result = await supertest(app).get('/locations/list')
+        console.log(result)
+        expect(result.status).toBe(200)
+    });
 })

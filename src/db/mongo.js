@@ -1,12 +1,12 @@
 // const { MongoClient } = require('mongodb');
 // or as an es module:
-import { Db, MongoClient } from 'mongodb'
+const {Db, MongoClient} = require('mongodb')
 
 // Connection URL
 const MONGO_ACCOUNT = process.env.MONGO_INITDB_ROOT_USERNAME ? process.env.MONGO_INITDB_ROOT_USERNAME : "root"
 const MONGO_PASSWORD = process.env.MONGO_INITDB_ROOT_PASSWORD ? process.env.MONGO_INITDB_ROOT_PASSWORD : ""
-const MONGO_HOST = process.env.MONGO_HOST ? process.env.MONGO_HOST : "mongo"
-const MONGO_DATABASE = process.env.MONGO_DATABASE ? process.env.MONGO_DATABASE : "2map"
+const MONGO_HOST = process.env.MONGO_HOST ?  process.env.MONGO_HOST : "mongo"
+const MONGO_DATABASE = process.env.MONGO_DATABASE ? process.env.test ? process.env.MONGO_DATABASE_TEST : process.env.MONGO_DATABASE : "2map"
 
 const url = `mongodb://${MONGO_ACCOUNT}:${MONGO_PASSWORD}@${MONGO_HOST}:27017`;
 
@@ -28,4 +28,6 @@ const mongo = () => {
     })
 }
 
-export default mongo
+module.exports = {
+    mongo
+}

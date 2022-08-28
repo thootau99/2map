@@ -1,4 +1,4 @@
-import mongo from '../db/mongo.js'
+const { mongo } = require('../db/mongo.js')
 
 const location = {
     generate_location_record(N, E, road1, road2, cancel, comment) {
@@ -29,5 +29,6 @@ const location = {
         })
     }
 }
-
-export default location
+module.exports = {
+    location
+}

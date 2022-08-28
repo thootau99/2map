@@ -1,8 +1,8 @@
-import validator from 'express-validator';
+const validator = require('express-validator')
 /**
  * @param  {validator.ValidationChain[]} validations
  */
-export const validate = (validations) => {
+const validate = (validations) => {
   return async (req, res, next) => {
     for (let validation of validations) {
     await validation.run(req);
@@ -18,4 +18,6 @@ export const validate = (validations) => {
   };
 };
 
-export default validate
+module.exports = {
+  validate
+}

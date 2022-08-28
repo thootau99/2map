@@ -1,7 +1,8 @@
-import express, { Router } from "express";
-import { body } from "express-validator";
-import location from '../models/locations.js'
-import validate from '../models/validate.js'
+const express = require('express')
+const { body } = require('express-validator')
+const { location } = require('../models/locations.js')
+const { validate } = require('../models/validate.js')
+
 /**
  * 
  * @type {Router}
@@ -63,7 +64,7 @@ router.get('/list', async (req, res, next) => {
  router.post('/insert', validate([
 	body('N').isNumeric(),
 	body('E').isNumeric(),
-	body('road2').if(body('road2').exists()).isString(),
+	body('road1').if(body('road1').exists()).isString(),
 	body('road2').if(body('road2').exists()).isString(),
 	body('comment').if(body('comment').exists()).isString(),
  ]), async (req, res, next) => {
@@ -75,4 +76,6 @@ router.get('/list', async (req, res, next) => {
 	}
 });
 
-export default router
+module.exports = {
+	router
+}
