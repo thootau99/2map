@@ -10,8 +10,13 @@ jobs:
     steps:
     - name: Git checkout
       uses: actions/checkout@v3
+
     - name: init project
       run: sudo apt-get install -y make
     - run: make init
+
     - name: Docker compose up
       run: docker-compose up -d
+
+    - name: run jest
+      run: docker-compose exec api sh -c "npm run test"
