@@ -11,7 +11,7 @@ jobs:
     - name: Git checkout
       uses: actions/checkout@v3
     - name: init project
-      run: sudo apt-get install -y make
-      run: make init
+    - run: sudo apt-get install -y make
+    - run: make init
     - name: Docker compose up
-      run: docker-compose up -d
+    - run: docker-compose up -d
