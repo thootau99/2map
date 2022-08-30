@@ -20,6 +20,6 @@ jobs:
     -
       name: docker build + login + push
       run: |
-        docker build . -t ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE_NAME }}:${{ steps.extract_branch.outputs.branch }}
+        docker build  -t ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE_NAME }}:${{ steps.extract_branch.outputs.branch }} .
         docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
         docker push ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE_NAME }}:${{ steps.extract_branch.outputs.branch }}
